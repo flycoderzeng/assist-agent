@@ -97,6 +97,15 @@ public class ShellExecuteController {
         }else{
             cmdResult.setTaskStatus("running");
         }
+        if(cmdTask.getFuture().isDone()) {
+            CMD_TASK_MAP.remove(getCmdResultBody.getTaskId());
+        }
+        boolean isTimeout = (System.currentTimeMillis() - cmdTask.getStartTime()) > (cmdTask.getTimeout() * 60 * 1000);
+        if(isTimeout && !cmdTask.getFuture().isDone()) {
+            cmdTask.getFuture().cancel(true);
+            cmdResult.setTaskStatus("timeout");
+            CMD_TASK_MAP.remove(getCmdResultBody.getTaskId());
+        }
         ConcurrentLinkedQueue outputQueue = cmdTask.getOutputQueue();
         StringBuilder builder = new StringBuilder();
         while (!outputQueue.isEmpty()) {

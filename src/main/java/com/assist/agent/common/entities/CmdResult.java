@@ -7,7 +7,7 @@ public class CmdResult {
     private Integer exitValue;
     private String output;
     private String taskId;
-    private String taskStatus = "finished";
+    private String taskStatus;
 
     public CmdResult() {
 

@@ -1,7 +1,6 @@
 package com.assist.agent.common.entities;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.HashMap;
@@ -10,7 +9,6 @@ import java.util.Map;
 
 @Data
 public class RunCmdBody {
-    @NotNull(message = "命令不能为空")
     @NotBlank(message = "命令不能为空")
     private String cmd;
     // 命令参数列表
