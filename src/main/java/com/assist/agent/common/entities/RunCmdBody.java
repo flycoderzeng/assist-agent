@@ -1,5 +1,7 @@
 package com.assist.agent.common.entities;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -15,6 +17,8 @@ public class RunCmdBody {
     private List<String> params;
 
     // 分钟
+    @Max(value = 60)
+    @Min(value = 1)
     private int timeout = 10;
 
     //specific environment
