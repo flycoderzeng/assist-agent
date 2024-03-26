@@ -16,6 +16,9 @@ public class RunCmdBody {
     // 命令参数列表
     private List<String> params;
 
+    // 分钟
+    private int timeout = 10;
+
     //specific environment
     private Map<String, String> env;
 
