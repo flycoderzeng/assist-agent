@@ -1,6 +1,6 @@
 一个执行shell 命令的java springboot服务
 
-curl --location 'http://localhost:8080/login' --form 'username="admin"' --form 'password="Abcd1234"'
+curl --location 'http://localhost:8080/login' --form 'username="admin"' --form 'password="12345678"'
 
 curl --location 'http://localhost:8080/shell/runSyncCmd' \
 --header 'Content-Type: application/json' \
