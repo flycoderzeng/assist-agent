@@ -1,6 +1,7 @@
 package com.assist.agent.security;
 
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -39,9 +40,16 @@ public class SecurityAutoConfig {
     public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
         User.UserBuilder users = User.builder().passwordEncoder(passwordEncoder::encode);
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(users.username("guest").password("Abcd1234").roles("GUEST").build());
-        manager.createUser(users.username("manager").password("Abcd1234").roles("MANAGER").build());
-        manager.createUser(users.username("admin").password("Abcd1234").roles("ADMIN").build());
+        String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890~!@#$%^&*()_+=-{}[]|;:'\",.<>/?`";
+        String random1 = RandomStringUtils.random(16, chars);
+        System.out.println("guest password: " + random1);
+        manager.createUser(users.username("guest").password(random1).roles("GUEST").build());
+        String random2 = RandomStringUtils.random(16, chars);
+        System.out.println("manager password: " + random2);
+        manager.createUser(users.username("manager").password(random2).roles("MANAGER").build());
+        String random3 = RandomStringUtils.random(16, chars);
+        System.out.println("admin password: " + random3);
+        manager.createUser(users.username("admin").password(random3).roles("ADMIN").build());
         return manager;
     }
 
